@@ -1,5 +1,5 @@
 'use strict';
-const Sancion = require('../model/alquiler.model');
+const Sancion = require('../model/sancion.model');
 exports.findAll = function (req, res) {
     Sancion.findAll(function (err, sancion) {
         console.log('controller')
