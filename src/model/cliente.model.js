@@ -25,7 +25,7 @@ Cliente.create = function (nuevoCliente, result) {
     });
 };
 Cliente.findById = function (id, result) {
-    dbConn.query("Select * from cliente where id = ? ", id, function (err, res) {
+    dbConn.query("Select * from cliente where codigo_cliente = ? ", id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -48,7 +48,7 @@ Cliente.findAll = function (result) {
     });
 };
 Cliente.update = function (id, cliente, result) {
-    dbConn.query("UPDATE cliente SET telefono=?,nombre_cliente=?,email=?,nro_DNI=?,fecha_nacimiento=?,tema_interes=?,estado=? WHERE id = ?",
+    dbConn.query("UPDATE cliente SET telefono=?,nombre_cliente=?,email=?,nro_DNI=?,fecha_nacimiento=?,tema_interes=?,estado=? WHERE codigo_cliente = ?",
         [cliente.telefono,
         cliente.nombre_cliente,
         cliente.email,
@@ -67,7 +67,7 @@ Cliente.update = function (id, cliente, result) {
         });
 };
 Cliente.delete = function (id, result) {
-    dbConn.query("DELETE FROM cliente WHERE id = ?", [id], function (err, res) {
+    dbConn.query("DELETE FROM cliente WHERE codigo_cliente = ?", [id], function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(null, err);

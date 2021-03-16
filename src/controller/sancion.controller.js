@@ -1,49 +1,49 @@
 'use strict';
-const Cliente = require('../model/cliente.model');
+const Sancion = require('../model/sancion.model');
 exports.findAll = function (req, res) {
-    Cliente.findAll(function (err, cliente) {
+    Sancion.findAll(function (err, sancion) {
         console.log('controller')
         if (err)
             res.send(err);
-        console.log('res', cliente);
-        res.send(cliente);
+        console.log('res', sancion);
+        res.send(sancion);
     });
 };
 exports.create = function (req, res) {
-    const new_cliente = new Cliente(req.body);
+    const new_Sancion = new Sancion(req.body);
     //handles null error
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.status(400).send({ error: true, message: 'Please provide all required field' });
     } else {
-        Cliente.create(new_cliente, function (err, cliente) {
+        Sancion.create(new_Sancion, function (err, sancion) {
             if (err)
                 res.send(err);
-            res.json({ error: false, message: "Client added successfully!", data: cliente });
+            res.json({ error: false, message: "sancion added successfully!", data: alquiler });
         });
     }
 };
 exports.findById = function (req, res) {
-    Cliente.findById(req.params.id, function (err, cliente) {
+    Sancion.findById(req.params.id, function (err, sancion) {
         if (err)
             res.send(err);
-        res.json(cliente);
+        res.json(sancion);
     });
 };
 exports.update = function (req, res) {
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.status(400).send({ error: true, message: 'Please provide all required field' });
     } else {
-        Cliente.update(req.params.id, new Cliente(req.body), function (err, cliente) {
+        Sancion.update(req.params.id, new Sancion(req.body), function (err, sancion) {
             if (err)
                 res.send(err);
-            res.json({ error: false, message: 'Client successfully updated' });
+            res.json({ error: false, message: 'sancion successfully updated' });
         });
     }
 };
 exports.delete = function (req, res) {
-    Cliente.delete(req.params.id, function (err, client) {
+    Sancion.delete(req.params.id, function (err, sancion) {
         if (err)
             res.send(err);
-        res.json({ error: false, message: 'client successfully deleted' });
+        res.json({ error: false, message: 'sancion successfully deleted' });
     });
 };

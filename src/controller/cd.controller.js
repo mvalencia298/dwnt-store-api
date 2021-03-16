@@ -1,49 +1,49 @@
 'use strict';
-const Cliente = require('../model/cliente.model');
+const CD = require('../model/cd.model');
 exports.findAll = function (req, res) {
-    Cliente.findAll(function (err, cliente) {
+    CD.findAll(function (err, CD) {
         console.log('controller')
         if (err)
             res.send(err);
-        console.log('res', cliente);
-        res.send(cliente);
+        console.log('res', CD);
+        res.send(CD);
     });
 };
 exports.create = function (req, res) {
-    const new_cliente = new Cliente(req.body);
+    const new_cd = new CD(req.body);
     //handles null error
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.status(400).send({ error: true, message: 'Please provide all required field' });
     } else {
-        Cliente.create(new_cliente, function (err, cliente) {
+        CD.create(new_cd, function (err, cd) {
             if (err)
                 res.send(err);
-            res.json({ error: false, message: "Client added successfully!", data: cliente });
+            res.json({ error: false, message: "CD added successfully!", data: cd });
         });
     }
 };
 exports.findById = function (req, res) {
-    Cliente.findById(req.params.id, function (err, cliente) {
+    CD.findById(req.params.id, function (err, cd) {
         if (err)
             res.send(err);
-        res.json(cliente);
+        res.json(cd);
     });
 };
 exports.update = function (req, res) {
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.status(400).send({ error: true, message: 'Please provide all required field' });
     } else {
-        Cliente.update(req.params.id, new Cliente(req.body), function (err, cliente) {
+        CD.update(req.params.id, new CD(req.body), function (err, cd) {
             if (err)
                 res.send(err);
-            res.json({ error: false, message: 'Client successfully updated' });
+            res.json({ error: false, message: 'CD successfully updated' });
         });
     }
 };
 exports.delete = function (req, res) {
-    Cliente.delete(req.params.id, function (err, client) {
+    CD.delete(req.params.id, function (err, cd) {
         if (err)
             res.send(err);
-        res.json({ error: false, message: 'client successfully deleted' });
+        res.json({ error: false, message: 'CD successfully deleted' });
     });
 };
