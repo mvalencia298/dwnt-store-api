@@ -7,7 +7,8 @@ ReactJs
 
 ## Integrantes
 - Mauricio Valencia Cosme
-
+- Jennifer Elizabeth Gonzalez Tejada
+- Yeisson Daniel Quiceno Gomez
 
 ## Run project
 
