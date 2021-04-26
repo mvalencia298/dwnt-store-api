@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 // Require routes
 const clienteRoutes = require('./routes/cliente.routes')
 const cdRoutes = require('./routes/cd.routes')
@@ -9,6 +10,7 @@ const detalleAlquilernRoutes = require('./routes/detalle-alquiler.routes')
 // create express app
 const app = express();
 // Setup server port
+app.use(cors());
 const port = process.env.PORT || 5000;
 app.use(express.urlencoded({ extended: true }))
 // parse requests of content-type - application/json
