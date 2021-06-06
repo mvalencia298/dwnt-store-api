@@ -3,6 +3,7 @@ var dbConn = require('../config/db.config');
 
 //Employee object create
 var DetalleAlquiler = function (detalleAlquiler) {
+    this.nro_alquiler = detalleAlquiler.nro_alquiler;
     this.item = detalleAlquiler.item;
     this.codigo_titulo = detalleAlquiler.codigo_titulo;
     this.nro_CD = detalleAlquiler.nro_CD;
@@ -22,7 +23,7 @@ DetalleAlquiler.create = function (nuevoDetalleAlquiler, result) {
     });
 };
 DetalleAlquiler.findById = function (id, result) {
-    dbConn.query("Select * from detalle_alquiler where nro_alquiler = ? ", id, function (err, res) {
+    dbConn.query("Select * from detalle_alquiler where id_detalle_alquiler = ? ", id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -45,8 +46,9 @@ DetalleAlquiler.findAll = function (result) {
     });
 };
 DetalleAlquiler.update = function (id, detalleAlquiler, result) {
-    dbConn.query("UPDATE detalle_alquiler SET item=?,codigo_titulo=?,nro_CD=?,dias_prestamo=?,fecha_devolucion=? WHERE nro_alquiler = ?",
-        [detalleAlquiler.item,
+    dbConn.query("UPDATE detalle_alquiler SET nro_alquiler=?, item=?,codigo_titulo=?,nro_CD=?,dias_prestamo=?,fecha_devolucion=? WHERE id_detalle_alquiler = ?",
+        [detalleAlquiler.nro_alquiler,
+            detalleAlquiler.item,
             detalleAlquiler.codigo_titulo,
             detalleAlquiler.nro_CD,
             detalleAlquiler.dias_prestamo,
@@ -62,7 +64,7 @@ DetalleAlquiler.update = function (id, detalleAlquiler, result) {
         });
 };
 DetalleAlquiler.delete = function (id, result) {
-    dbConn.query("DELETE FROM detalle_alquiler WHERE nro_alquiler = ?", [id], function (err, res) {
+    dbConn.query("DELETE FROM detalle_alquiler WHERE id_detalle_alquiler = ?", [id], function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(null, err);
