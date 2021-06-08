@@ -10,7 +10,11 @@ exports.findAll = function (req, res) {
     });
 };
 exports.create = function (req, res) {
+    console.log(req.body);
     const new_Sancion = new Sancion(req.body);
+    console.log(new_Sancion);
+    new_Sancion.tipo_sancion = 'media';
+    new_Sancion.nro_dias_sancion = 10;
     //handles null error
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.status(400).send({ error: true, message: 'Please provide all required field' });
@@ -18,7 +22,7 @@ exports.create = function (req, res) {
         Sancion.create(new_Sancion, function (err, sancion) {
             if (err)
                 res.send(err);
-            res.json({ error: false, message: "sancion added successfully!", data: alquiler });
+            res.json({ error: false, message: "sancion added successfully!", data: sancion });
         });
     }
 };

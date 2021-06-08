@@ -4,7 +4,7 @@ var dbConn = require('../config/db.config');
 //Employee object create
 var Sancion = function (sancion) {
     this.codigo_cliente = sancion.codigo_cliente;
-    this.codigo_cliente = sancion.nro_alquiler;
+    this.nro_alquiler = sancion.nro_alquiler;
     this.tipo_sancion = sancion.tipo_sancion;
     this.nro_dias_sancion = sancion.nro_dias_sancion;
 };
